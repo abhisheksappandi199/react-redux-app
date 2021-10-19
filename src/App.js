@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react' 
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import Messages from './components/Messages'
+import UsersList from './components/UsersList'
+import  PostsList from './components/PostsList'
+import UserShow from './components/UserShow'
+import PostShow from './components/PostShow'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+    return(
+        <Router>
+            <div>
+                <h1>React Redux Example </h1>
+                <Link to="/users">List Users</Link> -{' '}
+                <Link to='/posts'>Posts</Link> - {' '}
+                <Link to="/messages">Messages</Link>
+                
+                
+                <Route path='/posts' component={PostsList} exact={true}/>
+                <Route path='/posts/:id' component={PostShow}/>
+                <Route path="/users" component={UsersList} exact={true}/>
+                <Route path='/users/:id' component={UserShow}/>
+                <Route path="/messages" component={Messages} />
+            </div>
+        </Router>
+    )
 }
 
-export default App;
+export default App
